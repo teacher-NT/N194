@@ -1,8 +1,12 @@
 import os
 os.system("cls")
 
-for i in range(10):
-    if i % 3 == 0:
-        print(i)
-    else:
-        print("NO")
+tuple1 = ("Jiguli", "Malibu", "Mclaren", "Cobalt", "BMW", "Ferrari")
+
+print(tuple1[0])
+print(tuple1[2:5])
+print(tuple1[2:])
+print(tuple1[:3])
+print(tuple1[1:6:2])
+print(tuple1[-2])
+print(tuple1[::-1])
