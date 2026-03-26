@@ -1,3 +1,8 @@
-print("Hello world")
+import os
+os.system("cls")
 
-print("Github orqali o'zgartirildi")
+for i in range(10):
+    if i % 3 == 0:
+        print(i)
+    else:
+        print("NO")
