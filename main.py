@@ -1,9 +1,33 @@
 import os
 os.system("cls")
 
-t1 = (1,2,3,45,6,8,9,2,5,45, "Salom", 45)
+ismlar = ['Ibrohim', "Begzod", "Abdulhamid"]
 
-# print(t1.index(9))
-# print(t1.index("Salom"))
+ismlar.append("Nurmuhammad")
+# print(ismlar)
 
-print(t1.count(45))
+ismlar.insert(1, "Muhammadsobir")
+# print(ismlar)
+
+ismlar2 = ["Asalxon", "Pariza"]
+ismlar.extend(ismlar2)
+# print(ismlar)
+
+ismlar.remove("Ibrohim")
+# print(ismlar)
+
+# ism = ismlar.pop(3)
+# print(ismlar)
+# print(ism)
+
+# ismlar.clear()
+# print(ismlar)
+
+# print(ismlar)
+# ismlar.sort(reverse=True)
+# print(ismlar)
+
+ismlar3 = ismlar.copy()
+ismlar3.append("Ibrohim")
+print(ismlar3)
+print(ismlar)
