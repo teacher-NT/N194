@@ -1,12 +1,9 @@
 import os
 os.system("cls")
 
-tuple1 = ("Jiguli", "Malibu", "Mclaren", "Cobalt", "BMW", "Ferrari")
+t1 = (1,2,3,45,6,8,9,2,5,45, "Salom", 45)
 
-print(tuple1[0])
-print(tuple1[2:5])
-print(tuple1[2:])
-print(tuple1[:3])
-print(tuple1[1:6:2])
-print(tuple1[-2])
-print(tuple1[::-1])
+# print(t1.index(9))
+# print(t1.index("Salom"))
+
+print(t1.count(45))
