@@ -1,27 +1,31 @@
 import os
 os.system("cls")
 
-set1 = {"Salom","Hello", "Good", "Nice"}
-# set1.add("wonderfull")
-# set1.add("Morning")
+set1 = {1,2,3,4,5,6}
+set2 = {4,5,6,7,8,9}
 
-# set1.remove("Hello")
+# set3 = set1.intersection(set2)
+# print(set3)
 
-# s = set1.pop()
-# print(s)
+# set1.intersection_update(set2)
+# print(set1)
 
-# set1.discard("Hi")
+# set3 = set1.difference(set2)
+# print(set3)
 
-# set1.clear()
+# set1.difference_update(set2)
+# print(set1)
 
-# set2 = set1.copy()
-# print(set2)
+# set3 = set1.symmetric_difference(set2)
+# print(set3)
 
-set2 = {1,2,3,4,5, "Hello", "Good"}
-# set1.update(set2)
+# set1.symmetric_difference_update(set2)
+# print(set1)
 
-set3 = set1.union(set2)
-print(set3)
+set1 = {1,2,3,4,5,6,7,8,9,10}
+set2 = {3,7,4}
+# print(set2.issubset(set1))
+print(set1.issuperset(set2))
 
-print(set1)
+
 
