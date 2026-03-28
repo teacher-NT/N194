@@ -1,33 +1,27 @@
 import os
 os.system("cls")
 
-ismlar = ['Ibrohim', "Begzod", "Abdulhamid"]
+set1 = {"Salom","Hello", "Good", "Nice"}
+# set1.add("wonderfull")
+# set1.add("Morning")
 
-ismlar.append("Nurmuhammad")
-# print(ismlar)
+# set1.remove("Hello")
 
-ismlar.insert(1, "Muhammadsobir")
-# print(ismlar)
+# s = set1.pop()
+# print(s)
 
-ismlar2 = ["Asalxon", "Pariza"]
-ismlar.extend(ismlar2)
-# print(ismlar)
+# set1.discard("Hi")
 
-ismlar.remove("Ibrohim")
-# print(ismlar)
+# set1.clear()
 
-# ism = ismlar.pop(3)
-# print(ismlar)
-# print(ism)
+# set2 = set1.copy()
+# print(set2)
 
-# ismlar.clear()
-# print(ismlar)
+set2 = {1,2,3,4,5, "Hello", "Good"}
+# set1.update(set2)
 
-# print(ismlar)
-# ismlar.sort(reverse=True)
-# print(ismlar)
+set3 = set1.union(set2)
+print(set3)
 
-ismlar3 = ismlar.copy()
-ismlar3.append("Ibrohim")
-print(ismlar3)
-print(ismlar)
+print(set1)
+
