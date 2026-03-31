@@ -9,10 +9,7 @@ car = {
     "max_speed": 200,
 }
 
-# car["rang"] = "Oq"
-
-# print(car["brand"])
-# print(car["narx"])
-# print(car)
-
-# print(car["brend"])
+if "model" in car:
+    print(car["model"])
+else:
+    print("No")
