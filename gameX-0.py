@@ -7,7 +7,6 @@ def bosh_doska_hosil_qil():
        '1','2','3','4','5','6','7','8','9'
    ]
     
-
 def doskani_korsat(doska):
     start = 0
     end = 3
@@ -28,16 +27,13 @@ def foydalanuvchi_tanlasin(doska):
         else:
             print("Iltimos bo'sh katakni tanlang!")
 
-
-
 def bosh_maydonlar(doska):
     free = []
     for i in doska:
         if i != 'O' and i != 'X':
             free.append(i)
     return free
-    
-    
+        
 def golib_bormi(doska, belgi):
     if doska[0] == belgi and doska[1]==belgi and doska[2]==belgi:
         return True
@@ -58,7 +54,6 @@ def golib_bormi(doska, belgi):
     else:
         return False
 
-    
 def kompyuter_tanlasin(doska):
     free = bosh_maydonlar((doska))
     if not free:
@@ -66,7 +61,6 @@ def kompyuter_tanlasin(doska):
     ch = choice(free)
     index = doska.index(ch)
     doska[index] = 'X'
-
 
 doska = bosh_doska_hosil_qil()
 while bosh_maydonlar(doska):
@@ -80,6 +74,7 @@ while bosh_maydonlar(doska):
         doskani_korsat(doska)
         print("Kompyuter yutdi!!!")
         break
+    os.system("cls")
 else:
     print("G'olib aniqlanmadi...")
 
