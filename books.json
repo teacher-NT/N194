@@ -1,0 +1,7 @@
+[
+  {"title": "Harry Potter",  "author": "Rowling",    "genre": "fantasy"},
+  {"title": "1984",          "author": "Orwell",     "genre": "dystopia"},
+  {"title": "Hobbit",        "author": "Tolkien",    "genre": "fantasy"},
+  {"title": "Brave New World","author": "Huxley",   "genre": "dystopia"},
+  {"title": "Dune",          "author": "Herbert",   "genre": "sci-fi"}
+]

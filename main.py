@@ -1,33 +1,77 @@
 import os
 os.system('cls')
-import math
 
-# print(math.pow(2,3), 2**3)
+# def even_squares(numbers: list[int]) -> list[int]:
+#     result = []
+#     for i in numbers:
+#         if i % 2 == 0:
+#             result.append(i**2)
+#     return result
 
-# print(math.sqrt(25))
-
-# print(math.log2(64))
-# print(math.log(625, 5))
-
-# print(math.floor(4.99))
-# print(math.ceil(4.12))
-# print(round(4.99), round(4.12))
+# numbers = [1, 2, 3, 4, 5, 6]
+# print(even_squares(numbers))
+# Output: [4, 16, 36]
 
 
-import random as rd
+# def find_longest_word(words: list[str]) -> str:
+#     if not words:
+#         return ""
+#     return max(words, key=len)
 
-# a = rd.uniform(1,10)
-# print(a)
+# words = ["apple", "banana", "kiwi",'applejoice', "strawberry", ]
+# print(find_longest_word([]))
+# Output: strawberry
 
-names = ['Ali', 'Vali', 'Xasan',  'Xusan']
-# n = rd.choice(names)
-# print(n)
 
-# n = rd.choices(names,k=2)
-# print(n)
+# def count_above_average(scores: list[int]) -> int:
+#     if not scores:
+#         return 0
+#     avg = sum(scores)/len(scores)
+#     res = list(filter(lambda x: x>avg, scores))
+#     return len(res)
 
-# n = rd.sample(names, k=2)
-# print(n)
+    # count  = 0
+    # for i in scores:
+    #     if i > avg:
+    #         count+=1
+    # return count
 
-rd.shuffle(names)
-print(names)
+# scores = [50, 70, 80, 40, 90, 60]
+# print(count_above_average([]))
+# Output: 3  (o'rtacha: 65, undan yuqori: 70, 80, 90)
+
+
+
+# def filter_by_prefix(words: list[str], prefix: str) -> list[str]:
+#     res  = filter(lambda x:x.lower().startswith(prefix.lower()), words)
+#     return list(res)
+
+# words = ["Python", "java", "javascript", "Pycharm", "ruby"]
+# prefix = "PY"
+# print(filter_by_prefix(words, prefix))
+# Output: ['Python', 'Pycharm']
+
+
+
+import json
+
+def manage_library(input_file: str, genre: str, output_file: str) -> int:
+    with open(input_file) as file:
+        books = json.load(file)
+    res = list(filter(lambda x:x.get('genre').lower()==genre.lower(), books))
+    res2 = res.copy()
+    with open(output_file, "w") as f:
+        json.dump(list(res), f, indent=2)
+    return len(res2)
+
+# Sinov uchun:
+count = manage_library("books.json", "FANTASY", "fantasy_books.json")
+print(count)
+# Output: 2
+# fantasy_books.json faylida faqat fantasy kitoblar yozilgan bo'lishi kerak
+
+input_file="books.json"
+genre="dystopia"
+output_file="out.json"
+count = manage_library(input_file, genre, output_file)
+print(count)
