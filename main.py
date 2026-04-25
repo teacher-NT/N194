@@ -1,23 +1,41 @@
 import os
 os.system('cls')
 
-class Animal:
-    def eat(self):
-        print("Animal is eating!")
+from abc import ABC, abstractmethod
+
+class Player(ABC):
+    @abstractmethod
+    def run(self):
+        pass
+
+    @abstractmethod
+    def jump(self):
+        pass
+
+    @abstractmethod
+    def kick(self):
+        pass
+
+
+class Vector(Player):
+    def __init__(self, ball, heart):
+        self.ball = ball
+        self.heart = heart
     
     def run(self):
-        print("Animal is running!")
+        print("Vector is running...")
+    
+    def kick(self):
+        print("Vector is kicking...")
+    
+    def jump(self):
+        print("Vector is jumping...")
 
-class Dog(Animal):
-    pass
+    def fly(self):
+        print("Vector is flying...")
 
-class Cat(Animal):
-    pass
-
-dog1 = Dog()
-cat1 = Cat()
-
-# dog1.eat()
-# dog1.run()
-
-cat1.eat()
+v1 = Vector(100, 5)
+v1.jump()
+v1.run()
+v1.kick()
+v1.fly()
