@@ -2,13 +2,10 @@ import os
 os.system('cls')
 
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QLabel, QPushButton
+    QApplication, QWidget, QLabel, QPushButton,
+    QLineEdit
 )
 from PyQt5.QtGui import QFont
-
-# font1 = QFont("Courier", 18)
-# font1 = QFont("Comic Sans MS", 18)
-
 
 app = QApplication([])
 
@@ -24,18 +21,13 @@ matn1.setStyleSheet("""font-size:28px;
                     margin-left:20px; 
                     color:red;
                     font-weight: bold;""")
-# matn1.setFont(font1)
 
-matn2 = QLabel(window)
-matn2.setText("0")
-matn2.setStyleSheet("""
-                    font-size: 60px;
-                    color: blue;
-                    margin-top:170px;
-                    margin-left:170px;
-""")
-matn2.setFixedWidth(600)
-
+in1 = QLineEdit(window)
+in1.setGeometry(70,100, 280, 50)
+in1.setStyleSheet("""font-size:25px;
+                  border-radius:20px;
+                  border: 2px solid black""")
+in1.setPlaceholderText("rang kiriting...")
 
 style1 = """
     font-size: 18px;
@@ -54,9 +46,10 @@ style2 = """
 """
 
 def func_btn1():
-    global matn2
-    n = int(matn2.text())+1
-    matn2.setText(str(n))
+    global in1
+    color = in1.text()
+    window.setStyleSheet(f"background-color: {color};")
+    
 
 
 button1 = QPushButton(window)
@@ -64,17 +57,6 @@ button1.setText("Count")
 button1.setGeometry(80, 300, 100, 50)
 button1.setStyleSheet(style1)
 button1.clicked.connect(func_btn1)
-
-
-def func_btn2():
-    global matn2
-    matn2.setText("0")
-
-button2 = QPushButton(window)
-button2.setText("Reset")
-button2.setGeometry(250, 300, 100, 50)
-button2.setStyleSheet(style2)
-button2.clicked.connect(func_btn2)
 
 window.show()
 app.exec_()
