@@ -3,7 +3,7 @@ os.system('cls')
 
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QComboBox, QCheckBox
+    QVBoxLayout, QHBoxLayout, QComboBox, QCheckBox, QRadioButton
 )
 
 body_style = """
@@ -44,14 +44,17 @@ class MyWindow(QWidget):
         self.label3 = QLabel("Ichimliklar: bo'sh")
         self.label3.setStyleSheet(label2_style)
         self.vbox.addWidget(self.label3)
-        
-        
+        self.label4 = QLabel("To'lov turi: tanlanmagan")
+        self.label4.setStyleSheet(label2_style)
+        self.vbox.addWidget(self.label4)
+
         self.menu = QComboBox()
         self.menu.addItems(['Somsa', 'Qazi', 'Osh', 'Manti', 'Qozon kabob', 'Shashlik', 'Beshbarmoq'])
         self.vbox.addWidget(self.menu)
         self.menu.setStyleSheet(menu_style)
         self.menu.currentTextChanged.connect(self.get_food)
         self.add_checkbox()
+        self.add_radio()
         self.setLayout(self.vbox)
         self.show()
     
@@ -96,6 +99,27 @@ class MyWindow(QWidget):
         
         self.label3.setText(result)
 
+    def add_radio(self):
+        self.r1 = QRadioButton("Naqd")
+        self.vbox.addWidget(self.r1)
+        self.r1.setStyleSheet(check_tyle)
+        self.r1.clicked.connect(self.radio_func)
+        self.r2 = QRadioButton("Karta")
+        self.r2.setStyleSheet(check_tyle)
+        self.r2.clicked.connect(self.radio_func)
+        self.vbox.addWidget(self.r2)
+        self.r3 = QRadioButton("Crypto")
+        self.r3.setStyleSheet(check_tyle)
+        self.r3.clicked.connect(self.radio_func)
+        self.vbox.addWidget(self.r3)
+
+    def radio_func(self):
+        if self.r1.isChecked():
+            self.label4.setText(f"To'lov turi: {self.r1.text()}")
+        elif self.r2.isChecked():
+            self.label4.setText(f"To'lov turi: {self.r2.text()}")
+        elif self.r3.isChecked():
+            self.label4.setText(f"To'lov turi: {self.r3.text()}")
 
 app = QApplication([])
 win = MyWindow()
