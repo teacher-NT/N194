@@ -3,7 +3,8 @@ os.system('cls')
 
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QComboBox, QCheckBox, QRadioButton
+    QVBoxLayout, QHBoxLayout, QComboBox, QCheckBox, QRadioButton,
+    QMessageBox
 )
 
 body_style = """
@@ -55,12 +56,18 @@ class MyWindow(QWidget):
         self.menu.currentTextChanged.connect(self.get_food)
         self.add_checkbox()
         self.add_radio()
+
+        self.order_btn = QPushButton("Buyurtma qilish")
+        self.order_btn.clicked.connect(self.show_message)
+        self.vbox.addWidget(self.order_btn)
+
         self.setLayout(self.vbox)
         self.show()
     
     def get_food(self):
         current = self.menu.currentText()
         self.label2.setText(f"Savat: {current}")
+        return current
 
     def add_checkbox(self):
         self.check1 = QCheckBox("Choy")
@@ -85,7 +92,6 @@ class MyWindow(QWidget):
         self.check4.setStyleSheet(check_tyle)
         self.check4.stateChanged.connect(self.check_func)
 
-
     def check_func(self):
         result = "Ichimliklar: "
         if self.check1.isChecked():
@@ -98,6 +104,7 @@ class MyWindow(QWidget):
             result += f"{self.check4.text()}, "
         
         self.label3.setText(result)
+        return result
 
     def add_radio(self):
         self.r1 = QRadioButton("Naqd")
@@ -116,10 +123,21 @@ class MyWindow(QWidget):
     def radio_func(self):
         if self.r1.isChecked():
             self.label4.setText(f"To'lov turi: {self.r1.text()}")
+            return f"To'lov turi: {self.r1.text()}"
         elif self.r2.isChecked():
             self.label4.setText(f"To'lov turi: {self.r2.text()}")
+            return f"To'lov turi: {self.r2.text()}"
         elif self.r3.isChecked():
             self.label4.setText(f"To'lov turi: {self.r3.text()}")
+            return f"To'lov turi: {self.r3.text()}"
+        return "To'lov turi: tanlanmagan"
+
+
+    def show_message(self):
+        food = self.get_food()
+        drink = self.check_func()
+        payment = self.radio_func()
+        QMessageBox.information(self, "Xabar", f"{food}\n{drink}\n{payment}")
 
 app = QApplication([])
 win = MyWindow()
