@@ -2,144 +2,120 @@ import os
 os.system('cls')
 
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QComboBox, QCheckBox, QRadioButton,
-    QMessageBox
+    QApplication, QWidget, QPushButton, QLabel, QVBoxLayout,
+    QLineEdit
 )
 
-body_style = """
-    background-color: #f3f7c3;
+body2_style = """
+    background-color: white;
+    color: black;
 """
-
-label_style = """
-    font-size: 32px;
-    color: #e05b2f;
+label1_1_style =  """
+    font-size: 30px;
+    font-weight:bold;
+    padding: 5px;
+    border: 3px solid black;
 """
-
-label2_style = """
+btn1_1_style = """
     font-size: 20px;
-"""
-menu_style = """
-    font-size: 20px;
-    background-color: #dfe665;
-    color: #6044bd;
-"""
-
-check_tyle = """
-    font-size: 20px;
+    color: black;
+    background-color: green;
+    border-radius: 20px;
+    height: 50px;
 """
 
-class MyWindow(QWidget):
-    def __init__(self):
+class AboutWindow(QWidget):
+    def __init__(self, main_wind):
         super().__init__()
-        self.setStyleSheet(body_style)
+        self.main_wind = main_wind
         self.vbox = QVBoxLayout()
-        # self.setFixedSize(400, 700)
-        self.label1 = QLabel("Restoran Menusi")
-        self.label1.setStyleSheet(label_style)
+        self.setWindowTitle("About oynasi")
+        self.setGeometry(1200, 200, 400, 700)
+        self.setStyleSheet(body2_style)
+
+        self.label1 = QLabel("About me!")
+        self.label1.setStyleSheet(label1_1_style)
         self.vbox.addWidget(self.label1)
 
-        self.label2 = QLabel("Savat: bo'sh")
-        self.label2.setStyleSheet(label2_style)
-        self.vbox.addWidget(self.label2)
-        self.label3 = QLabel("Ichimliklar: bo'sh")
-        self.label3.setStyleSheet(label2_style)
-        self.vbox.addWidget(self.label3)
-        self.label4 = QLabel("To'lov turi: tanlanmagan")
-        self.label4.setStyleSheet(label2_style)
-        self.vbox.addWidget(self.label4)
+        self.btn1 = QPushButton("Back")
+        self.btn1.setStyleSheet(btn1_1_style)
+        self.btn1.clicked.connect(self.back_window)
+        self.vbox.addWidget(self.btn1)
 
-        self.menu = QComboBox()
-        self.menu.addItems(['Somsa', 'Qazi', 'Osh', 'Manti', 'Qozon kabob', 'Shashlik', 'Beshbarmoq'])
-        self.vbox.addWidget(self.menu)
-        self.menu.setStyleSheet(menu_style)
-        self.menu.currentTextChanged.connect(self.get_food)
-        self.add_checkbox()
-        self.add_radio()
+        self.setLayout(self.vbox)
+    
+    def back_window(self):
+        # self.new_window = MainWindow()
+        # self.new_window.show()
+        self.main_wind.show()
+        self.hide()
 
-        self.order_btn = QPushButton("Buyurtma qilish")
-        self.order_btn.clicked.connect(self.show_message)
-        self.vbox.addWidget(self.order_btn)
+
+body_style = """
+    background-color: black;
+    color: white;
+"""
+label1_style =  """
+    font-size: 30px;
+    font-weight:bold;
+    padding: 5px;
+    border: 3px solid white;
+"""
+btn1_style = """
+    font-size: 20px;
+    color: black;
+    background-color: red;
+    border-radius: 20px;
+    height: 50px;
+"""
+input_style = """
+    border: 3px solid black;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+"""
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.vbox = QVBoxLayout()
+        self.setWindowTitle("Dastur oynasi")
+        self.setGeometry(1200, 200, 400, 700)
+        self.setStyleSheet(body_style)
+
+        self.label1 = QLabel("Welcome")
+        self.label1.setStyleSheet(label1_style)
+        self.vbox.addWidget(self.label1)
+
+        self.input = QLineEdit()
+        self.input.setStyleSheet(input_style)
+        self.vbox.addWidget(self.input)
+
+        self.btn2 = QPushButton("Change text")
+        self.btn2.setStyleSheet(btn1_style)
+        self.btn2.clicked.connect(self.change_text)
+        self.vbox.addWidget(self.btn2)
+
+        self.btn1 = QPushButton("Open new window")
+        self.btn1.setStyleSheet(btn1_style)
+        self.btn1.clicked.connect(self.open_about)
+        self.vbox.addWidget(self.btn1)
 
         self.setLayout(self.vbox)
         self.show()
     
-    def get_food(self):
-        current = self.menu.currentText()
-        self.label2.setText(f"Savat: {current}")
-        return current
+    def open_about(self):
+        self.about_win = AboutWindow(self)
+        self.about_win.show()
+        self.hide()
 
-    def add_checkbox(self):
-        self.check1 = QCheckBox("Choy")
-        self.vbox.addWidget(self.check1)
-        self.check1.setStyleSheet(check_tyle)
-        self.check1.stateChanged.connect(self.check_func)
-
-        self.check2 = QCheckBox("Kofe")
-        self.vbox.addWidget(self.check2)
-        self.check2.setStyleSheet(check_tyle)
-        self.check2.stateChanged.connect(self.check_func)
+    def change_text(self):
+        self.label1.setText(f"Welcome {self.input.text()}!")
 
 
-        self.check3 = QCheckBox("Mineral Suv")
-        self.vbox.addWidget(self.check3)
-        self.check3.setStyleSheet(check_tyle)
-        self.check3.stateChanged.connect(self.check_func)
 
-
-        self.check4 = QCheckBox("Sut")
-        self.vbox.addWidget(self.check4)
-        self.check4.setStyleSheet(check_tyle)
-        self.check4.stateChanged.connect(self.check_func)
-
-    def check_func(self):
-        result = "Ichimliklar: "
-        if self.check1.isChecked():
-            result += f"{self.check1.text()}, "
-        if self.check2.isChecked():
-            result += f"{self.check2.text()}, "
-        if self.check3.isChecked():
-            result += f"{self.check3.text()}, "
-        if self.check4.isChecked():
-            result += f"{self.check4.text()}, "
-        
-        self.label3.setText(result)
-        return result
-
-    def add_radio(self):
-        self.r1 = QRadioButton("Naqd")
-        self.vbox.addWidget(self.r1)
-        self.r1.setStyleSheet(check_tyle)
-        self.r1.clicked.connect(self.radio_func)
-        self.r2 = QRadioButton("Karta")
-        self.r2.setStyleSheet(check_tyle)
-        self.r2.clicked.connect(self.radio_func)
-        self.vbox.addWidget(self.r2)
-        self.r3 = QRadioButton("Crypto")
-        self.r3.setStyleSheet(check_tyle)
-        self.r3.clicked.connect(self.radio_func)
-        self.vbox.addWidget(self.r3)
-
-    def radio_func(self):
-        if self.r1.isChecked():
-            self.label4.setText(f"To'lov turi: {self.r1.text()}")
-            return f"To'lov turi: {self.r1.text()}"
-        elif self.r2.isChecked():
-            self.label4.setText(f"To'lov turi: {self.r2.text()}")
-            return f"To'lov turi: {self.r2.text()}"
-        elif self.r3.isChecked():
-            self.label4.setText(f"To'lov turi: {self.r3.text()}")
-            return f"To'lov turi: {self.r3.text()}"
-        return "To'lov turi: tanlanmagan"
-
-
-    def show_message(self):
-        food = self.get_food()
-        drink = self.check_func()
-        payment = self.radio_func()
-        QMessageBox.information(self, "Xabar", f"{food}\n{drink}\n{payment}")
 
 app = QApplication([])
-win = MyWindow()
-app.exec_()
 
+win = MainWindow()
+
+app.exec_()
