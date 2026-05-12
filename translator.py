@@ -118,9 +118,6 @@ class TranslatorApp(QWidget):
         engine.say(text)
         engine.runAndWait()
 
-
-
-
 app = QApplication([])
 win = TranslatorApp()
 
