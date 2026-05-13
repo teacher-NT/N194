@@ -28,11 +28,16 @@ cursor = mydb.cursor()
 # """
 
 
-sql2 = """
-    UPDATE users SET followers = 7000000
-    WHERE user_id = 31;
+# sql2 = """
+#     UPDATE users SET followers = 7000000
+#     WHERE user_id = 31;
+# """
+
+sql3 = """
+    DELETE FROM users WHERE user_id = 30;
 """
-cursor.execute(sql2)
+
+cursor.execute(sql3)
 mydb.commit()
 
 print(f"{cursor.rowcount} rows affected")
