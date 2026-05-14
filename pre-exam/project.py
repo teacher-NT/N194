@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel,
-    QMessageBox
+    QMessageBox,QGridLayout
 )
+from PyQt5.QtCore import Qt
 import json
 import datetime
 
@@ -9,22 +10,38 @@ class Oyna(QWidget):
     def __init__(self):
         super().__init__()
         self.vbox = QVBoxLayout()
+        self.gridbox = QGridLayout()
         self.setWindowTitle("Yangi tadbir qo'shish ilovasi")
         self.setFixedSize(450,350)
+        self.label1 = QLabel("Tadbir nomi: ")
         self.name_input = QLineEdit()
         self.name_input.setPlaceholderText("Tadbir nomi: ")
-        self.vbox.addWidget(self.name_input)
+        # self.vbox.addWidget(self.name_input)
+        self.gridbox.addWidget(self.label1, 1,1)
+        self.gridbox.addWidget(self.name_input, 1,2)
+        self.label2 = QLabel("Joyi: ")
         self.location_input = QLineEdit()
         self.location_input.setPlaceholderText("Joyi: ")
-        self.vbox.addWidget(self.location_input)
+        # self.vbox.addWidget(self.location_input)
+        self.gridbox.addWidget(self.label2, 2, 1)
+        self.gridbox.addWidget(self.location_input, 2, 2)
+        self.label3 = QLabel("Sana: ")
         self.date_input = QLineEdit()
         self.date_input.setPlaceholderText("Sana: (YYYY-MM-DD)")
-        self.vbox.addWidget(self.date_input)
+        # self.vbox.addWidget(self.date_input)
+        self.gridbox.addWidget(self.label3, 3, 1)
+        self.gridbox.addWidget(self.date_input, 3, 2)
+        self.label4 = QLabel("Tur: ")
         self.type_input = QLineEdit()
         self.type_input.setPlaceholderText("Tur: ")
-        self.vbox.addWidget(self.type_input)
+        # self.vbox.addWidget(self.type_input)
+        self.gridbox.addWidget(self.label4, 4, 1)
+        self.gridbox.addWidget(self.type_input, 4, 2)
         self.add_button = QPushButton("Qo'shish")
         self.add_button.clicked.connect(self.add_data)
+        # self.vbox.addWidget(self.add_button)
+        self.vbox.addLayout(self.gridbox)
+
         self.vbox.addWidget(self.add_button)
 
         self.setLayout(self.vbox)
